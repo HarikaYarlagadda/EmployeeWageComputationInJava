@@ -9,8 +9,8 @@ class EmployeWageComputationInJava
 	private int totalEmpWage;
 	public EmployeWageComputationInJava(String company, int empRatePerHour, int numOfWorkingDays, int maxHoursPerMonth)
 	{
-		   this.company = company;
-		   this.empRatePerHour = empRatePerHour;
+		this.company = company;
+		this.empRatePerHour = empRatePerHour;
      		this.numOfWorkingDays = numOfWorkingDays;
      		this.maxHoursPerMonth = maxHoursPerMonth;
    	}
@@ -48,11 +48,11 @@ class EmployeWageComputationInJava
     	public static void main(String arg[])
     	{
 		EmployeWageComputationInJava dMart = new EmployeWageComputationInJava("DMart", 20, 20, 100);
-      EmployeWageComputationInJava reliance = new EmployeWageComputationInJava("Reliance", 50, 28, 100);
-      dMart.computeEmployeeWage();
+      		EmployeWageComputationInJava reliance = new EmployeWageComputationInJava("Reliance", 50, 28, 100);
+      		dMart.computeEmployeeWage();
 		System.out.println(dMart);
-      reliance.computeEmployeeWage();
-      System.out.println(reliance);
+      		reliance.computeEmployeeWage();
+      		System.out.println(reliance);
     	}
 }
 
