@@ -5,7 +5,7 @@ public class EmployeWageComputationInJava
 	public static final int EMP_RATE_PER_HOUR = 20;
 	public static final int NUM_OF_WORKING_DAYS = 20;
 	public static final int MAX_HRS_IN_MONTH = 100;
-	public static int computeEmployeWageComputationInJava()
+	public static int computeEmployeWage()
 	{
 		int empHrs = 0;
 		int totalEmpHrs = 0;
@@ -34,6 +34,6 @@ public class EmployeWageComputationInJava
 	}
 	public static void main(String[] args)
 	{
-		computeEmployeWageComputationInJava();
+		computeEmployeWage();
 	}
 }
