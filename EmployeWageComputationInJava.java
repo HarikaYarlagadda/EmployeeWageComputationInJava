@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.HashMap;
 
 interface IEmpWageComputation
 {
@@ -9,12 +10,11 @@ interface IEmpWageComputation
 
 class CompanyEmpWage
 {
- 
+    
     final String COMPANY_NAME;
     final int WAGE_PER_HR;
     final int MAX_WORKING_DAYS;
     final int MAX_WORKING_HRS;
- 
     int totalEmpWage;
 
     CompanyEmpWage(String companyName, int wagePerHr, int maxWorkingDays, int maxWorkingHrs)
@@ -35,7 +35,7 @@ class CompanyEmpWage
     public String toString()
     {
         System.out.println("Details of " + COMPANY_NAME + " employee");
-        System.out.println("       ");
+        System.out.println("      ");
         System.err.println("Wage per hour:" + WAGE_PER_HR);
         System.out.println("Maximum working days:" + MAX_WORKING_DAYS);
         System.out.println("Maximum working hours:" + MAX_WORKING_HRS);
@@ -45,20 +45,24 @@ class CompanyEmpWage
 
 class EmployeWageComputationInJava implements IEmpWageComputation
 {
- 
+    
     public static final int PART_TIME = 1;
     public static final int FULL_TIME = 2;
+    
     ArrayList<CompanyEmpWage> companies;
+    HashMap<String, Integer> totalEmpWages;
 
     public EmployeWageComputationInJava()
     {
         companies = new ArrayList<>();
+        totalEmpWages = new HashMap<>();
     }
 
     public void addCompany(String companyName, int wagePerHr, int maxWorkingDays, int maxWorkingHrs)
     {
         CompanyEmpWage company = new CompanyEmpWage(companyName, wagePerHr, maxWorkingDays, maxWorkingHrs);
         companies.add(company);
+        totalEmpWages.put(companyName,0);
     }
 
     int generateEmployeeType()
@@ -105,16 +109,28 @@ class EmployeWageComputationInJava implements IEmpWageComputation
             totalWage += wage;
             System.out.printf("%3d       %3d      %3d      %3d\n", day, workingHrs, wage, totalWorkingHrs + workingHrs);
         }
+        totalEmpWages.put(companyEmpWage.COMPANY_NAME, totalWage);
         return totalWage;
+    }
+
+    void printTotalEmpWages()
+    {
+        System.out.println("The Companies and their total Employee Wages are:");
+        for (String companyName : totalEmpWages.keySet())
+        {
+            System.out.println(companyName + ": " + totalEmpWages.get(companyName));
+        }
+
     }
 
     public static void main(String args[])
     {
         EmployeWageComputationInJava employeeWageComputation = new EmployeWageComputationInJava();
-        employeeWageComputation.addCompany("DMart", 5, 29, 100);
-        employeeWageComputation.addCompany("Reliance", 4, 30, 120);
-        employeeWageComputation.addCompany("spencers", 6, 20, 70);
-        employeeWageComputation.addCompany("max", 9, 30, 130);
+        employeeWageComputation.addCompany("DMart", 4, 30, 100);
+        employeeWageComputation.addCompany("Reliance", 5, 40, 170);
+        employeeWageComputation.addCompany("spencers", 19, 10, 150);
+		  employeeWageComputation.addCompany("max",6,80,100);
         employeeWageComputation.calculateTotalWage();
+        employeeWageComputation.printTotalEmpWages();
     }
 }
